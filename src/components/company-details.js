@@ -14,7 +14,7 @@ export default function CompanyCard({company, history}) {
               <p><b>Address</b><br/>{company.address}</p>
               <p><b>Revenue</b><br/>{company.revenue}</p>
               <p><b>Phone No.</b><br/>({company.phoneCode}) {company.phoneNum}</p>
-              <Button primary onClick={() => history.push('/')}>Back to Overview</Button>
+              <Button className='pull-right' primary onClick={() => history.push('/')}>Back to Overview</Button>
             </Card.Description>
           </Card.Content>
         </Card>

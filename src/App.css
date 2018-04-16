@@ -22,6 +22,12 @@
   color: white;
 }
 
+.pull-right{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
 .App-title {
   font-size: 1.5em;
 }
