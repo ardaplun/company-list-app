@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 3;
+  font-family: sans-serif;
+}
+#root{
+  padding:3;
+}
+
+.error {
+  color: #9f3a38;
+}
