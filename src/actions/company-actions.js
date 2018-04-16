@@ -12,7 +12,6 @@ export function fetchCompanies(){
 }
 
 export function fetchCompany(_id) {
-  console.log(_id);
   return dispatch => {
     return dispatch({
       type: 'FETCH_COMPANY',
@@ -22,7 +21,6 @@ export function fetchCompany(_id) {
 }
 
 export function updateCompany(company) {
-  console.log(company);
   return dispatch => {
     return dispatch({
       type: 'UPDATE_COMPANY',

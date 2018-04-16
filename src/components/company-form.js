@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Grid, Button } from 'semantic-ui-react';
 import { Field, reduxForm,reset } from 'redux-form';
+import { phoneCode } from '../helpers/country-code.js';
 import classnames from 'classnames';
+import DropdownList from 'react-widgets/lib/DropdownList'
 
 class CompanyForm extends Component {
 
@@ -20,6 +22,20 @@ class CompanyForm extends Component {
     </Form.Field>
   )
 
+  phoneCodeField = ({ input, meta: { touched, error },...rest }) => (
+    <Form.Field className={classnames({error:touched && error})}>
+      <DropdownList {...input} {...rest}
+        textField = {item => {
+          return item.name ? item.name + ' (' + item.dial_code + ')' : item
+          }
+        }
+      />
+      {touched && error && <span className="error">{error.message}</span>}
+    </Form.Field>
+  )
+
+
+
   render() {
     const { handleSubmit, pristine, submitting, loading } = this.props;
     return (
@@ -32,9 +48,13 @@ class CompanyForm extends Component {
             <Field name="revenue" type="number" component={this.renderField} label="Revenue"/>
             <div className='field'><label>Phone No.</label>
               <Form.Group>
-                <div style={{flex:2,margin:'0px 6px'}}>
-                  <Field name="phoneCode" type="number" component={this.phoneField} label="Code" min={1}/>
+                <div style={{flex:3,margin:'0px 6px'}}>
+                  <Field name="phoneCode" type="number" data={phoneCode} component={this.phoneCodeField} placeholder="Code" min={1}
+                    />
                 </div>
+              {/*  <div style={{flex:2,margin:'0px 6px'}}>
+                  <Field name="phoneCode" component={this.phoneField} label="Code" min={1}/>
+                </div> */}
                 <div style={{flex:6,margin:'0px 6px'}}>
                   <Field name="phoneNum" type="number" component={this.phoneField} label="Number" min={1}/>
                 </div>
@@ -49,6 +69,9 @@ class CompanyForm extends Component {
 }
 
 const validate = (values) => {
+  if(values.phoneCode){
+    values.phoneCode = values.phoneCode.dial_code ? values.phoneCode.dial_code : values.phoneCode
+  }
   const errors = {};
   if(!values.name) {
     errors.name = {
