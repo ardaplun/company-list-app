@@ -11,16 +11,17 @@ export function fetchCompanies(){
   }
 }
 
-export function fetchCompany(_id) {
+export function fetchCompany(params) {
   return dispatch => {
     return dispatch({
       type: 'FETCH_COMPANY',
-      payload: client.get(`${url}/${_id._id}`)
+      payload: client.get(`${url}/${params._id}`)
     })
   }
 }
 
 export function updateCompany(company) {
+  console.log(company);
   return dispatch => {
     return dispatch({
       type: 'UPDATE_COMPANY',
@@ -45,6 +46,7 @@ export function saveCompany(company) {
     })
   }
 }
+
 export function deleteCompany(_id) {
   return dispatch => {
     return dispatch({
@@ -59,6 +61,16 @@ export function deleteOffice(data) {
   return dispatch => {
     return dispatch({
       type: 'DELETE_OFFICE',
+      payload: client.put(`${url}/${company._id}`, company)
+    })
+  }
+}
+export function deleteRoom(data) {
+  const {company, i,j} = data
+  company.offices[i].rooms.splice(j, 1);
+  return dispatch => {
+    return dispatch({
+      type: 'DELETE_ROOM',
       payload: client.put(`${url}/${company._id}`, company)
     })
   }

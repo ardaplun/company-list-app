@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route,Switch } from 'react-router-dom'
 import OverviewPage from './pages/overview-page';
 import OfficesPage from './pages/offices-page';
+import RoomsPage from './pages/rooms-page';
 import store from "./store"
 
 import './App.css';
@@ -16,7 +17,8 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Route exact path="/" component={OverviewPage} />
-        <Route path="/:_id" component={OfficesPage} />
+        <Route exact path="/:_id" component={OfficesPage} />
+        <Route exact path="/:_id/:_office" component={RoomsPage} />
       </Switch>
     </Router>
   </Provider>,

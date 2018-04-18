@@ -80,6 +80,7 @@ export default (state=defaultState, action={}) => {
 
     case 'UPDATE_COMPANY_FULFILLED': {
       const company = action.payload.data;
+      console.log(company);
       return {
         ...state,
         companies: state.companies.map(item => item._id === company._id ? company : item),
@@ -96,6 +97,16 @@ export default (state=defaultState, action={}) => {
     }
     case 'DELETE_OFFICE_FULFILLED': {
       const company = action.payload.data;
+      return {
+        ...state,
+        companies: state.companies.map(item => item._id === company._id ? company : item),
+        errors: {},
+        loading: false
+      }
+    }
+    case 'DELETE_ROOM_FULFILLED': {
+      const company = action.payload.data;
+      console.log(company);
       return {
         ...state,
         companies: state.companies.map(item => item._id === company._id ? company : item),

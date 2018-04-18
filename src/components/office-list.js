@@ -2,12 +2,12 @@ import React from 'react';
 import { Card } from 'semantic-ui-react';
 import OfficeCard from './office-card'
 
-export default function CompanyList({offices, deleteOffice, company}){
+export default function CompanyList({offices, deleteOffice, history, company, i}){
   const list = () => {
     if(offices.length > 0){
       return offices.map((office,i) => {
         return (
-          <OfficeCard key={i} company={company} i={i} office={office} deleteOffice={deleteOffice}/>
+          <OfficeCard key={office.name+i} company={company} i={i} history={history} office={office} deleteOffice={deleteOffice}/>
         )
       })
     }else{
